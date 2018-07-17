@@ -11,7 +11,7 @@ def driver(request):
     return wd
 
 
-def test_example(driver):
+def mytest(driver):
     driver.get("http://www.google.com/")
     driver.find_element_by_name("q").send_keys("webdriver")
     driver.find_element_by_name("btnG").click()
