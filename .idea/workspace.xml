@@ -15,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/test_example.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -201,9 +201,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_in_mytest_py - 2018.07.17 at 18h 50m 39s.xml">
-      <configuration name="py.test in mytest.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_in_mytest_py - 2018.07.17 at 18h 53m 33s.xml">
       <configuration name="py.test in mytest.py" configurationId="tests" />
     </history-entry>
@@ -226,6 +223,12 @@
       <configuration name="py.test in test_example.py" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_in_test_example_py - 2018.07.18 at 11h 05m 53s.xml">
+      <configuration name="py.test in test_example.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_example_py - 2018.07.18 at 11h 13m 19s.xml">
+      <configuration name="py.test in test_example.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_example_py - 2018.07.18 at 11h 13m 42s.xml">
       <configuration name="py.test in test_example.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -274,7 +277,7 @@
     <entry file="file://$PROJECT_DIR$/test_example.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
         </state>
       </provider>
     </entry>
