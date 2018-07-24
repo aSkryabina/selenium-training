@@ -5,12 +5,12 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture
 def driver(request):
-    wd = webdriver.Firefox()
+    wd = webdriver.Firefox(firefox_binary="C:\\Users\\askryabina.000\\AppData\\Local\\Firefox Nightly\\firefox.exe")
+    print(wd.capabilities)
     request.addfinalizer(wd.quit)
     return wd
 
-
-def test_login(driver):
+def test_ff(driver):
     driver.get("http://localhost/litecart/admin/")
     driver.find_element_by_name("username").send_keys("admin")
     driver.find_element_by_name("password").send_keys("admin")
