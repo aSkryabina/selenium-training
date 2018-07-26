@@ -15,10 +15,10 @@ def test_stickers(driver):
     count = 0
     for duck in ducks:
         stickers = duck.find_elements_by_xpath(".//div[contains(@class,'sticker')]")
-        if not(len(stickers) == 1):
-            print("Sticker is missing")
-        else:
+        if len(stickers) == 1:
             count = count + 1
+        else:
+            print("Sticker is missing")
     if len(ducks) == count:
         print("All items have a sticker")
 
