@@ -11,7 +11,7 @@ def driver(request):
 
 def test_stickers(driver):
     driver.get("http://localhost/litecart/")
-    ducks = driver.find_elements_by_xpath("//div[contains(@class,'image-wrapper')]")
+    ducks = driver.find_elements_by_xpath("//div[contains(@class,'product')]")
     count = 0
     for duck in ducks:
         stickers = duck.find_elements_by_xpath(".//div[contains(@class,'sticker')]")
