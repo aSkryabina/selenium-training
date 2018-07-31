@@ -20,7 +20,6 @@ def test_countries(driver):
     driver.find_element_by_name("login").click()
 
     '''проверка сортировки в разделе "Countries"'''
-
     driver.get("http://localhost/litecart/admin/?app=countries&doc=countries")
     #поиск всех строк таблицы Countries, создание пустого списка и вычисление количества строк
     rows = driver.find_elements_by_css_selector("table.dataTable tr.row")
@@ -63,11 +62,9 @@ def test_countries(driver):
 
 
     '''проверка сортировки в разделе "Geo Zones"'''
-
     driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones")
     # поиск всех строк таблицы Geo Zones, создание пустого списка и вычисление количества строк
     rows = driver.find_elements_by_css_selector("table.dataTable tr.row")
-    countries = []
     count = len(rows)
     # прохождение по циклу с распарсиванием строки, записью стран в новый список и проверкой количества зон
     for i in range(count):
