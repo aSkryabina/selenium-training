@@ -10,13 +10,13 @@ def driver(request):
     request.addfinalizer(wd.quit)
     return wd
 
-
+'''получение RGB элемента в виде списка'''
 def pars_color(str):
     rgb = []
-    len(str)
-    clr = str[5:len(str)-4]
+    start = str.find("(")
+    end = str.find(")")
+    clr = str[start+1:end]
     rgb = clr.split(", ")
-    print(rgb)
     return rgb
 
 
@@ -41,26 +41,25 @@ def prices(driver,locator):
     if size_pr < size_ps:
         print("Size of regular price less than campaign price")
     else:
-
         print("Size of regular price more than campaign price")
-    #получаем цвет акционной цены и проверяем, является ли он серым
-    color_ps_css = price_sale.value_of_css_property("color")
-    color_ps = pars_color(color_ps_css)
-    if color_ps[0] == color_ps[1] and color_ps[0] == color_ps[2]:
-        print("The regular price's color is gray")
-    else:
-        print("The regular price's color is not gray")
 
-    #получаем цвет регулярной цены
-    color_pr_css = price_reg.value_of_css_property("color")
-    color_pr = pars_color(color_pr_css)
-    if color_pr[1] == 0 and color_pr[2] == 0:
+    #получаем цвет акционной цены и проверяем, является ли он красным
+    color_sale = pars_color(price_sale.value_of_css_property("color"))
+    if int(color_sale[1]) == 0 and int(color_sale[2]) == 0:
         print("The regular price's color is red")
     else:
         print("The regular price's color is not red")
 
+    #получаем цвет регулярной цены и проверяем, является ли он серым
+    color_reg = pars_color(price_reg.value_of_css_property("color"))
+    if color_reg[0] == color_reg[1] and color_reg[0] == color_reg[2]:
+        print("The regular price's color is gray")
+    else:
+        print("The regular price's color is not gray")
+
     #получаем стиль текста акционной цены
     font_ps = price_sale.value_of_css_property("text-decoration")
+    print(font_ps)
     #получаем стиль акционной цены
     font_pr = price_reg.value_of_css_property("font-weight")
     return list
@@ -72,15 +71,13 @@ def test_product(driver):
     driver.get("http://localhost/litecart/")
     name_main = driver.find_element_by_css_selector("div#box-campaigns li.product div.name").text
     main.append(name_main)
-    price_main = prices(driver,"div#box-campaigns li.product")
-    main.extend(price_main)
-    driver.find_element_by_css_selector("div#box-campaigns li.product").click()
+    main.extend(prices(driver,"div#box-campaigns li.product"))
+    driver.find_element_by_css_selector("div#box-campaigns li.product").click() #переход на страницу товара
     #поиск элементов на странице товара странице
     page = []
     name_page = driver.find_element_by_css_selector("h1.title").text
     page.append(name_page)
-    price_page = prices(driver, "div#box-product")
-    page.extend(price_page)
+    page.extend(prices(driver, "div#box-product"))
     #сравнение товаров
     if main == page:
         print("Are equal")
