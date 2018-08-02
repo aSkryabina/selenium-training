@@ -57,11 +57,20 @@ def prices(driver,locator):
     else:
         print("The regular price's color is not gray")
 
-    #получаем стиль текста акционной цены
-    font_ps = price_sale.value_of_css_property("text-decoration")
-    print(font_ps)
-    #получаем стиль акционной цены
-    font_pr = price_reg.value_of_css_property("font-weight")
+    #определяем, выделена ли акционная цена жирным
+    style_sale = price_sale.tag_name
+    if style_sale == "strong":
+        print("Text of sale price is bold")
+    else:
+        print("Text of sale price is not bold")
+
+    #определяем, зачеркнута ли обычная цена
+    style_reg = price_reg.tag_name
+    if style_reg == "s":
+        print("Text of regular price is line-through")
+    else:
+        print("Text of regular price is not line-through")
+
     return list
 
 
@@ -80,9 +89,9 @@ def test_product(driver):
     page.extend(prices(driver, "div#box-product"))
     #сравнение товаров
     if main == page:
-        print("Are equal")
+        print("Text and prices are equal")
     else:
-        print("Are not equal")
+        print("Text and prices are not equal")
 
 
 
