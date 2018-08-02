@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-import re
+
 
 @pytest.fixture
 def driver(request):
@@ -23,6 +22,7 @@ def pars_color(str):
 def prices(driver,locator):
     list = []
     items = driver.find_elements_by_css_selector(locator)
+    url = driver.current_url #url текущей страницы
     item = items[0]
 
     #Получаем обычную и акционную стоимость товара
@@ -39,37 +39,37 @@ def prices(driver,locator):
     size_pr = price_reg.value_of_css_property("font-size")
     size_ps = price_sale.value_of_css_property("font-size")
     if size_pr < size_ps:
-        print("Size of regular price less than campaign price")
+        print("Size of regular price less than campaign price on page: " + url)
     else:
-        print("Size of regular price more than campaign price")
+        print("Size of regular price more than campaign price on page: " + url)
 
     #получаем цвет акционной цены и проверяем, является ли он красным
     color_sale = pars_color(price_sale.value_of_css_property("color"))
     if int(color_sale[1]) == 0 and int(color_sale[2]) == 0:
-        print("The regular price's color is red")
+        print("The campaign price's color is red on page: " + url)
     else:
-        print("The regular price's color is not red")
+        print("The campaign price's color is not red on page: " + url)
 
     #получаем цвет регулярной цены и проверяем, является ли он серым
     color_reg = pars_color(price_reg.value_of_css_property("color"))
     if color_reg[0] == color_reg[1] and color_reg[0] == color_reg[2]:
-        print("The regular price's color is gray")
+        print("The regular price's color is gray on page: " + url)
     else:
-        print("The regular price's color is not gray")
+        print("The regular price's color is not gray on page: " + url)
 
     #определяем, выделена ли акционная цена жирным
     style_sale = price_sale.tag_name
     if style_sale == "strong":
-        print("Text of sale price is bold")
+        print("Text of campaign price is bold on page: " + url)
     else:
-        print("Text of sale price is not bold")
+        print("Text of campaign price is not bold on page: " + url)
 
     #определяем, зачеркнута ли обычная цена
     style_reg = price_reg.tag_name
     if style_reg == "s":
-        print("Text of regular price is line-through")
+        print("Text of regular price is line-through on page: " + url)
     else:
-        print("Text of regular price is not line-through")
+        print("Text of regular price is not line-through on page: " + url)
 
     return list
 
@@ -89,7 +89,7 @@ def test_product(driver):
     page.extend(prices(driver, "div#box-product"))
     #сравнение товаров
     if main == page:
-        print("Text and prices are equal")
+        print("Text and prices are equal on both pages")
     else:
         print("Text and prices are not equal")
 
