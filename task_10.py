@@ -81,12 +81,16 @@ def test_product(driver):
     name_main = driver.find_element_by_css_selector("div#box-campaigns li.product div.name").text
     main.append(name_main)
     main.extend(prices(driver,"div#box-campaigns li.product"))
-    driver.find_element_by_css_selector("div#box-campaigns li.product").click() #переход на страницу товара
+
+    #переход на страницу товара
+    driver.find_element_by_css_selector("div#box-campaigns li.product").click()
+
     #поиск элементов на странице товара странице
     page = []
     name_page = driver.find_element_by_css_selector("h1.title").text
     page.append(name_page)
     page.extend(prices(driver, "div#box-product"))
+
     #сравнение товаров
     if main == page:
         print("Text and prices are equal on both pages")
