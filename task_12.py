@@ -51,7 +51,7 @@ def test_countries(driver):
     driver.find_element_by_css_selector("input[type='number'][name='quantity']").clear()
     driver.find_element_by_css_selector("input[type='number'][name='quantity']").send_keys("19,99")
     #загрузка изображения
-    #driver.find_element_by_css_selector("input[type='file'][name='new_images[]']")
+    driver.find_element_by_css_selector("input[type='file'][name='new_images[]']").send_keys("C:\\Training\\selenium-training\\123.jpg")
     #календарь
     #driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']").click()
     #driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']").send_keys(Keys.HOME + "19,99")
@@ -87,7 +87,6 @@ def test_countries(driver):
 
     #проверка на отображение созданного товара в каталоге
     driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog")
-    #driver.find_element_by_css_selector("input[type='number'][name='purchase_price']")
     table = driver.find_element_by_css_selector(".dataTable")
     rows = table.find_elements_by_xpath("//tr[contains(@class,'row')]")
     if len(rows) == start_list+1:
