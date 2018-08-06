@@ -3,6 +3,7 @@ from selenium import webdriver
 import random
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+import os
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -50,13 +51,14 @@ def test_countries(driver):
     driver.find_element_by_css_selector("input[type='number'][name='quantity']").click()
     driver.find_element_by_css_selector("input[type='number'][name='quantity']").clear()
     driver.find_element_by_css_selector("input[type='number'][name='quantity']").send_keys("19,99")
+
     #загрузка изображения
-    driver.find_element_by_css_selector("input[type='file'][name='new_images[]']").send_keys("C:\\Training\\selenium-training\\123.jpg")
+    path = os.path.join(os.path.dirname(__file__))
+    driver.find_element_by_css_selector("input[type='file'][name='new_images[]']").send_keys(path + "\\123.jpg")
+
     #календарь
-    #driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']").click()
-    #driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']").send_keys(Keys.HOME + "19,99")
-    #driver.find_element_by_css_selector("input[type='date'][name='date_valid_to']").click()
-    #driver.find_element_by_css_selector("input[type='date'][name='date_valid_to']").send_keys(Keys.HOME + "19,99")
+    driver.execute_script("$('%s').datepicker('setDate', '%s')" % (driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']"), "02/20/2002"))
+    #driver.execute_script("$('%s').datepicker('setDate', '%s')" % (driver.find_element_by_css_selector("input[type='date'][name='date_valid_to']"), "02/20/2002"))
 
     #вкладка "Information"
     driver.find_element_by_xpath("//a[contains(text(),'Information')]").click()
