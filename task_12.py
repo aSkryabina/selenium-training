@@ -1,21 +1,19 @@
 import pytest
 from selenium import webdriver
 import random
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 import os
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.fixture
 def driver(request):
     wd = webdriver.Chrome()
-    wd.implicitly_wait(1)
+    wd.implicitly_wait(5)
     request.addfinalizer(wd.quit)
     return wd
 
 
-def test_countries(driver):
+def test_new_product(driver):
     #авторизация в админке
     driver.get("http://localhost/litecart/admin/")
     driver.find_element_by_name("username").send_keys("admin")
@@ -27,15 +25,15 @@ def test_countries(driver):
     menu = driver.find_elements_by_xpath("//ul[@id='box-apps-menu']//li[@id='app-']")
     menu[1].click()
     table = driver.find_element_by_css_selector(".dataTable")
-    rows = table.find_elements_by_xpath("//tr[contains(@class,'row')]")
-    start_list = len(rows)
+    rows = table.find_elements_by_xpath("//tr[@class='row']")
+    start_list = len(rows) - 1
 
     #переход в карточку добавления товара
     buttons = driver.find_elements_by_css_selector("a.button")
     buttons[1].click()
 
     #генерация данных
-    name = "item" + str(random.randint(1,999))
+    name = "item" + str(start_list)
     code = str(random.randint(1,999))
     keywords = "toys"
     short_description = "The best"
@@ -90,8 +88,8 @@ def test_countries(driver):
     #проверка на отображение созданного товара в каталоге
     driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog")
     table = driver.find_element_by_css_selector(".dataTable")
-    rows = table.find_elements_by_xpath("//tr[contains(@class,'row')]")
-    if len(rows) == start_list+1:
+    list = table.find_elements_by_xpath("//tr[@class='row']")
+    if len(list) == start_list + 2:
         print("Changes were successfully saved.")
     else:
         print("Error")
