@@ -57,8 +57,8 @@ def test_countries(driver):
     driver.find_element_by_css_selector("input[type='file'][name='new_images[]']").send_keys(path + "\\123.jpg")
 
     #календарь
-    driver.execute_script("$('%s').datepicker('setDate', '%s')" % (driver.find_element_by_css_selector("input[type='date'][name='date_valid_from']"), "02/20/2002"))
-    #driver.execute_script("$('%s').datepicker('setDate', '%s')" % (driver.find_element_by_css_selector("input[type='date'][name='date_valid_to']"), "02/20/2002"))
+    driver.execute_script('$("%s").val(\'%s\')' % ("input[type='date'][name='date_valid_from']", "2018-08-06"))
+    driver.execute_script('$("%s").val(\'%s\')' % ("input[type='date'][name='date_valid_to']", "2018-08-06"))
 
     #вкладка "Information"
     driver.find_element_by_xpath("//a[contains(text(),'Information')]").click()
