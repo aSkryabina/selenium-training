@@ -40,7 +40,6 @@ def add_item(driver):
 
 # нахождение списка товаров в корзине
 def items(driver):
-    driver.get("http://localhost/litecart/en/checkout")
     list = driver.find_elements_by_css_selector("td.item")
     return list
 
@@ -61,10 +60,15 @@ def delete_item(driver):
 
 
 def test_trash(driver):
+    # добавление 3х товаров в корзину
     for i in range(3):
         add_item(driver)
+    # переход по ссылке в корзину
+    driver.find_element_by_xpath("//a[contains(text(),'Checkout »')]").click()
+    # нахождение количества строк товаров в корзине
     rows = items(driver)
     count = len(rows)
+    # удаление товаров
     for i in range(count):
         delete_item(driver)
 
