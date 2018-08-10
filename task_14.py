@@ -20,14 +20,14 @@ def test_windows(driver):
     driver.find_element_by_name("remember_me").click()
     driver.find_element_by_name("login").click()
 
-    # страница countries
+    # страницы Countries и Edit Country
     driver.get("http://localhost/litecart/admin/?app=countries&doc=countries")
-    # поиск внешних ссылок
     driver.find_element_by_xpath("//a[@title='Edit']").click()
+    # поиск внешних ссылок
     form = driver.find_element_by_xpath("//form")
     links = form.find_elements_by_css_selector("a:not(#address-format-hint)")
     count = len(links)
-    # переход по каждой ссылке из списка c с ожиднием открытия нового окна
+    # переход по каждой ссылке из списка c ожиданием открытия нового окна
     for i in range(count):
         main_window = driver.current_window_handle
         old_windows = driver.window_handles
