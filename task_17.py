@@ -2,7 +2,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
 
 
 @pytest.fixture
@@ -33,6 +32,11 @@ def test_windows(driver):
         wait.until(EC.new_window_is_opened(old_windows))
         new_window = [i for i in driver.window_handles if i not in old_windows]
         driver.switch_to.window(new_window[0])
+        log = driver.get_log("browser")
+        if log == []:
+            print("Logs are empty on a page " + href)
+        else:
+            print(log)
         driver.close()
         driver.switch_to_window(main_window)
 
