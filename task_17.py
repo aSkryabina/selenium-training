@@ -37,6 +37,7 @@ def test_windows(driver):
             print("Logs are empty on a page " + href)
         else:
             for l in log:
+                print("Logs on a page " + href + ":")
                 print(l)
         driver.close()
         driver.switch_to_window(main_window)
