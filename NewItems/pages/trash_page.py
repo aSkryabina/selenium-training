@@ -12,11 +12,11 @@ class TrashPage:
         self.driver.find_element_by_xpath("//a[contains(text(),'Checkout »')]").click()
 
     def get_items_in_trash(self):
-        self.driver.find_elements_by_css_selector("td.item")
-        return self
+        list = self.driver.find_elements_by_css_selector("td.item")
+        return list
 
     def select_item(self):
-        if self.driver.find_elements_by_css_selector("li.shortcut a") > 0:
+        if len(self.driver.find_elements_by_css_selector("li.shortcut a")) > 0:
             self.driver.find_element_by_css_selector("li.shortcut a").click()
 
     def delete_item(self,el):

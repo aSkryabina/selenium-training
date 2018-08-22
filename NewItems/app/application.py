@@ -17,7 +17,7 @@ class Application:
     def add_items(self):
         self.main_page.open_page()
         self.main_page.item_click()
-        count = self.item_page.items_counter_in_trash()
+        count = int(self.item_page.get_items_counter_in_trash())
         self.item_page.select_option()
         self.item_page.add_item(count)
 

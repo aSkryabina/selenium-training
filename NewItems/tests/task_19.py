@@ -9,3 +9,4 @@ def test_new_product(app):
 
     for i in range(count):
         app.delete_items(count)
+        count = count - 1

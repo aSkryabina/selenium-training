@@ -10,12 +10,12 @@ class ItemPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
-    def items_counter_in_trash(self):
-        self.driver.find_element_by_css_selector("span.quantity").text
-        return int(self)
+    def get_items_counter_in_trash(self):
+        count = self.driver.find_element_by_css_selector("span.quantity").text
+        return count
 
     def select_option(self):
-        if self.driver.find_elements_by_xpath("select[name='options[Size]']") > 0:
+        if len(self.driver.find_elements_by_css_selector("select[name='options[Size]']")) > 0:
             Select(self.driver.find_element_by_css_selector("select[name='options[Size]']")).select_by_visible_text(
                 "Medium +$2.50")
 
