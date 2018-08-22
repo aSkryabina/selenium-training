@@ -1,6 +1,5 @@
 import pytest
 
-@pytest.fixture
 def test_new_product(app):
 
     for i in range(3):
